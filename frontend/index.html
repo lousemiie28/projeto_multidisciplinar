@@ -3,29 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechLoop - Vitrine Ecológica</title>
+    <title>TechLoop - Cyber Vitrine</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
-        header { background-color: #2e7d32; color: white; padding: 20px; text-align: center; border-radius: 8px; margin-bottom: 20px; }
-        .ods-badge { background-color: #f57c00; color: white; padding: 5px 10px; font-weight: bold; border-radius: 4px; display: inline-block; margin-top: 5px; }
-        .catalogo { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
-        .preco { font-size: 1.25rem; font-weight: bold; color: #2e7d32; margin: 10px 0; }
-        .badge { background-color: #e0f2f1; color: #00796b; padding: 4px 8px; font-size: 0.85rem; border-radius: 12px; font-weight: bold; }
-        button { background-color: #2e7d32; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1rem; margin-top: 10px; }
-        button:hover { background-color: #1b5e20; }
+        :root {
+            --bg-main: #050505;        /* Preto Absoluto */
+            --bg-card: #0d0d11;        /* Preto Grafite */
+            --text-main: #ffffff;      /* Branco Puro */
+            --text-muted: #888899;    /* Cinza */
+            --cyber-pink: #ff007f;     /* Rosa Neon */
+            --cyber-pink-glow: rgba(255, 0, 127, 0.4);
+            --cyber-pink-hover: #ff3399;
+        }
+        
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background-color: var(--bg-main); 
+            margin: 0; 
+            padding: 40px 20px; 
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        header { 
+            max-width: 1000px;
+            margin: 0 auto 50px auto;
+            text-align: center; 
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #ffffff, var(--cyber-pink));
+            -webkit-background-clip: text;
+background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 0;
+            letter-spacing: 0.02em;
+        }
+
+        .ods-badge { 
+            background: rgba(255, 0, 127, 0.08); 
+            color: var(--cyber-pink); 
+            padding: 6px 16px; 
+            font-weight: 700; 
+            font-size: 0.8rem;
+            border-radius: 4px; 
+            display: inline-block; 
+            border: 1px solid rgba(255, 0, 127, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.1);
+        }
+
+        .catalogo { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card { 
+            background: var(--bg-card); 
+            border: 1px solid #1a1a24; 
+            padding: 28px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--cyber-pink);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--cyber-pink);
+            box-shadow: 0 15px 35px rgba(255, 0, 127, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            margin: 12px 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .preco { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            color: var(--cyber-pink); 
+            margin: 20px 0 16px 0; 
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+        }
+
+        .badge { 
+            background-color: rgba(255, 255, 255, 0.05); 
+            color: var(--text-main); 
+            padding: 4px 12px; 
+            font-size: 0.75rem; 
+            border-radius: 4px; 
+            font-weight: 600;
+            align-self: flex-start;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        button { 
+            background-color: transparent; 
+            color: var(--cyber-pink); 
+            border: 2px solid var(--cyber-pink); 
+            padding: 14px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 0.95rem; 
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        button:hover { 
+            background-color: var(--cyber-pink); 
+            color: #000000;
+            box-shadow: 0 0 15px var(--cyber-pink-glow);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>♻️ TechLoop Hardware</h1>
-        <p>Eletrônicos Recondicionados com Garantia</p>
-        <span class="ods-badge">Alinhado à ODS 12: Consumo Responsável</span>
+        <p class="subtitle">Eletrônicos Recondicionados & Upgrades Circulares</p>
+        <span class="ods-badge">Conexão ODS 12: Consumo Responsável</span>
     </header>
 
     <main class="catalogo" id="produtos-container">
-        <!-- Os produtos da API entrarão aqui via JavaScript -->
+        <!-- Puxando os dados via API do backend -->
     </main>
 
     <script>
@@ -41,21 +181,25 @@
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
-                        <h3>${produto.nome}</h3>
-                        <span class="badge">Estado: ${produto.estado_conservacao}</span>
-                        <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
-                        <button onclick="comprarItem(${produto.id})">Comprar e Reciclar</button>
+                        <div>
+                            <span class="badge">${produto.estado_conservacao}</span>
+                            <h3>${produto.nome}</h3>
+                        </div>
+                        <div>
+                            <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
+                            <button onclick="comprarItem('${produto.nome}', ${produto.id})">Adquirir Dispositivo</button>
+                        </div>
                     `;
                     container.appendChild(card);
                 });
             } catch (erro) {
                 console.error("Erro ao conectar com a API:", erro);
-                document.getElementById('produtos-container').innerHTML = '<p>Erro ao carregar o catálogo. Verifique o backend!</p>';
+                document.getElementById('produtos-container').innerHTML = '<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">[Erro de Conexão] Ligue o seu servidor backend para listar o catálogo.</p>';
             }
         }
 
-        function comprarItem(id) {
-            alert(`Pedido simulado para o produto ID ${id}!\nConexão ODS 12: Você evitou o descarte de 200g de lixo eletrônico.`);
+        function comprarItem(nome, id) {
+            alert(`⚡ Pedido Processado: ${nome} (ID: ${id})\n\n🌱 Impacto ODS 12: Dispositivo salvo da linha de descarte! Menos 200g de e-waste no planeta.`);
         }
 
         carregarProdutos();
