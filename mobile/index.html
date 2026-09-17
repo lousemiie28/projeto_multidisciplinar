@@ -5,33 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechLoop App - Técnico</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #eef2f3; margin: 0; padding: 0; display: flex; justify-content: center; background: #121212; }
-        /* Simulando a tela de um smartphone */
-        .phone-container { width: 360px; height: 640px; background: #f4f7f6; border: 12px solid #333; border-radius: 36px; margin: 20px auto; overflow-y: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.3); position: relative; }
-        header { background-color: #1565c0; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; }
-        .sub-header { background-color: #bbdefb; color: #0d47a1; padding: 8px; text-align: center; font-size: 0.85rem; font-weight: bold; }
-        .card-pedido { background: white; margin: 15px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 5px solid #1565c0; }
-        h3 { margin: 0 0 10px 0; font-size: 1rem; color: #333; }
-        p { margin: 5px 0; font-size: 0.9rem; color: #666; }
-        .status { display: inline-block; background-color: #fff3e0; color: #e65100; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
-        button { background-color: #2e7d32; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
-        button:hover { background-color: #1b5e20; }
+        :root {
+            --bg-main: #050505;        /* Preto Absoluto */
+            --bg-phone: #09090d;       /* Fundo do Smartphone */
+            --bg-card: #0e0e14;        /* Cartão Grafite Escuro */
+            --text-main: #ffffff;      /* Branco Puro */
+            --text-muted: #7c7c8a;     /* Cinza */
+            --cyber-pink: #ff007f;     /* Rosa Neon */
+            --cyber-pink-glow: rgba(255, 0, 127, 0.3);
+            --border-color: #1a1a26;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            background: var(--bg-main); 
+            min-height: 100vh;
+        }
+
+        /* Simulador Mockup de Smartphone */
+        .phone-container { 
+            width: 360px; 
+            height: 680px; 
+            background: var(--bg-phone); 
+            border: 12px solid #14141a; 
+            border-radius: 40px; 
+            overflow-y: auto; 
+            box-shadow: 0 25px 60px rgba(255, 0, 127, 0.08); 
+            position: relative;
+            color: var(--text-main);
+        }
+
+        .phone-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        header { 
+            background-color: var(--bg-card); 
+            padding: 24px 16px 16px 16px; 
+            text-align: center; 
+            font-weight: 800; 
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sub-header { 
+            background: rgba(255, 0, 127, 0.05); 
+            color: var(--cyber-pink); 
+            padding: 10px; 
+            text-align: center; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 0, 127, 0.1);
+        }
+
+        .card-pedido { 
+            background: var(--bg-card); 
+            margin: 16px; 
+            padding: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .card-pedido::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--cyber-pink);
+            border-radius: 12px 0 0 12px;
+        }
+
+        h3 { 
+            margin: 0 0 16px 0; 
+            font-size: 1.15rem; 
+            color: var(--text-main); 
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .info-group {
+            margin-bottom: 12px;
+        }
+
+        .info-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.03em;
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            margin: 4px 0 0 0;
+            font-weight: 500;
+        }
+
+        .status { 
+            display: inline-block; 
+            background-color: rgba(255, 0, 127, 0.08); 
+            color: var(--cyber-pink); 
+            padding: 4px 12px; 
+            border-radius: 4px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255, 0, 127, 0.2);
+        }
+
+        button { 
+            background-color: transparent; 
+            color: var(--cyber-pink); 
+            border: 2px solid var(--cyber-pink); 
+            padding: 12px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            width: 100%; 
+            margin-top: 20px; 
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        button:hover { 
+            background-color: var(--cyber-pink); 
+            color: #000000;
+            box-shadow: 0 0 15px var(--cyber-pink-glow);
+        }
     </style>
 </head>
 <body>
 
     <div class="phone-container">
-        <header>📱 TechLoop Técnico</header>
-        <div class="sub-header">Ordens de Coleta / Logística Reversa</div>
+        <header>📱 TechLoop Ops</header>
+        <div class="sub-header">Ordens de Logística Reversa</div>
         
         <main id="pedidos-container">
-            <!-- As ordens de serviço vão carregar aqui simuladas -->
             <div class="card-pedido">
-                <h3>Ordem #1042 - Retirada</h3>
-                <p><strong>Cliente:</strong> João Silva</p>
-                <p><strong>Item para Descarte:</strong> Notebook Antigo (E-waste)</p>
-                <p><strong>Endereço:</strong> Av. Paulista, 1000 - Apto 42</p>
-                <span class="status">Status: Aguardando Coleta</span>
+                <h3>Coleta #1042</h3>
+                
+                <div class="info-group">
+                    <p class="info-label">Doador / Cliente</p>
+                    <p class="info-value">João Silva</p>
+                </div>
+                
+                <div class="info-group">
+                    <p class="info-label">Resíduo Tecnológico</p>
+                    <p class="info-value">Notebook Antigo (E-waste)</p>
+                </div>
+                
+                <div class="info-group">
+                    <p class="info-label">Endereço de Coleta</p>
+                    <p class="info-value">Av. Paulista, 1000 - Apto 42</p>
+                </div>
+
+                <span class="status">Aguardando Retirada</span>
                 <button onclick="atualizarStatus(this)">Confirmar Coleta (ODS 12)</button>
             </div>
         </main>
@@ -42,13 +187,14 @@
             const card = botao.parentElement;
             const statusSpan = card.querySelector('.status');
             
-            statusSpan.textContent = 'Status: Coletado / Destinado à Reciclagem';
-            statusSpan.style.backgroundColor = '#e8f5e9';
-            statusSpan.style.color = '#2e7d32';
+            statusSpan.textContent = 'Coletado & Destinado';
+            statusSpan.style.backgroundColor = 'rgba(52, 211, 153, 0.1)';
+            statusSpan.style.color = '#34d399';
+            statusSpan.style.borderColor = 'rgba(52, 211, 153, 0.2)';
             
             botao.style.display = 'none';
             
-            alert('Sucesso!\nDispositivo recolhido. O impacto ambiental foi computado no banco de dados da TechLoop.');
+            alert('Sucesso!\n\nDispositivo recolhido. O volume de hardware foi removido do fluxo de descarte inadequado e registrado nas métricas da ODS 12.');
         }
     </script>
 </body>
