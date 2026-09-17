@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechLoop App - Técnico</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #eef2f3; margin: 0; padding: 0; display: flex; justify-content: center; background: #121212; }
+        /* Simulando a tela de um smartphone */
+        .phone-container { width: 360px; height: 640px; background: #f4f7f6; border: 12px solid #333; border-radius: 36px; margin: 20px auto; overflow-y: auto; box-shadow: 0 10px 20px rgba(0,0,0,0.3); position: relative; }
+        header { background-color: #1565c0; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; }
+        .sub-header { background-color: #bbdefb; color: #0d47a1; padding: 8px; text-align: center; font-size: 0.85rem; font-weight: bold; }
+        .card-pedido { background: white; margin: 15px; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 5px solid #1565c0; }
+        h3 { margin: 0 0 10px 0; font-size: 1rem; color: #333; }
+        p { margin: 5px 0; font-size: 0.9rem; color: #666; }
+        .status { display: inline-block; background-color: #fff3e0; color: #e65100; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; }
+        button { background-color: #2e7d32; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 10px; font-weight: bold; }
+        button:hover { background-color: #1b5e20; }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <header>📱 TechLoop Técnico</header>
+        <div class="sub-header">Ordens de Coleta / Logística Reversa</div>
+        
+        <main id="pedidos-container">
+            <!-- As ordens de serviço vão carregar aqui simuladas -->
+            <div class="card-pedido">
+                <h3>Ordem #1042 - Retirada</h3>
+                <p><strong>Cliente:</strong> João Silva</p>
+                <p><strong>Item para Descarte:</strong> Notebook Antigo (E-waste)</p>
+                <p><strong>Endereço:</strong> Av. Paulista, 1000 - Apto 42</p>
+                <span class="status">Status: Aguardando Coleta</span>
+                <button onclick="atualizarStatus(this)">Confirmar Coleta (ODS 12)</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function atualizarStatus(botao) {
+            const card = botao.parentElement;
+            const statusSpan = card.querySelector('.status');
+            
+            statusSpan.textContent = 'Status: Coletado / Destinado à Reciclagem';
+            statusSpan.style.backgroundColor = '#e8f5e9';
+            statusSpan.style.color = '#2e7d32';
+            
+            botao.style.display = 'none';
+            
+            alert('Sucesso!\nDispositivo recolhido. O impacto ambiental foi computado no banco de dados da TechLoop.');
+        }
+    </script>
+</body>
+</html>
